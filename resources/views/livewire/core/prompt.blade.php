@@ -7,16 +7,12 @@
             class="mt-5"
             placeholder="Type your book description here..."
         />
-        <flux:button variant="primary" class="mt-5" type="submit">Create</flux:button>
+        <flux:button variant="primary" class="mt-5" type="submit" icon="bolt">Create</flux:button>
     </form>
 
     <div class="mt-20 max-w-2xl mx-auto">
-    @if($response)
-        <section>
-        <p class="text-lg text-center">{{ $response }}</p>
-    </section>
-    @endif
-</div>
-
-    </section>
+        @if($response)
+           <p class="text-lg text-center">{{ $response }}</p>
+        @endif
+    </div>
 </div>
