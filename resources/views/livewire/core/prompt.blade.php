@@ -7,6 +7,15 @@
             class="mt-5"
             placeholder="Type your book description here..."
         />
+        <flux:select wire:model="industry" placeholder="Choose industry..." class="mt-5">
+            <flux:select.option>Photography</flux:select.option>
+            <flux:select.option>Design services</flux:select.option>
+            <flux:select.option>Web development</flux:select.option>
+            <flux:select.option>Accounting</flux:select.option>
+            <flux:select.option>Legal services</flux:select.option>
+            <flux:select.option>Consulting</flux:select.option>
+            <flux:select.option>Other</flux:select.option>
+        </flux:select>
         <flux:button variant="primary" class="mt-5" type="submit" icon="bolt">Create</flux:button>
     </form>
 
