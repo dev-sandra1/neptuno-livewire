@@ -13,7 +13,6 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('dashboard', 'dashboard')->name('dashboard');
     Route::view('create-book', 'books')->name('books');
-
 });
 
 Route::middleware(['auth'])->group(function () {

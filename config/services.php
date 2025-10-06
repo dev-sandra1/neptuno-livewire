@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'openai' => [
+        'url' => env('OPENAI_API_URL'),
+        'token' => env('OPENAI_API_TOKEN'),
+    ],
+
 ];

@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('promts', function (Blueprint $table) {
+        Schema::create('prompts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('book_id')->constrained('books');
+            $table->foreignId('book_id')->nullable()->constrained('books');
             $table->text('prompt');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
