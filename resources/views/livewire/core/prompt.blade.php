@@ -6,7 +6,7 @@
             wire:model="prompt"
             placeholder="Type your book description here..."
         />
-        <flux:select wire:model="industry" placeholder="Choose industry..." class="mt-5">
+        <flux:select placeholder="Choose industry..." class="mt-5">
             <flux:select.option>Photography</flux:select.option>
             <flux:select.option>Design services</flux:select.option>
             <flux:select.option>Web development</flux:select.option>
