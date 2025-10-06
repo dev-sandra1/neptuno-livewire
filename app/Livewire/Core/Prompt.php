@@ -14,7 +14,7 @@ class Prompt extends Component
     public ?string $response = null;
 
     /**
-     * Handle an incoming authentication request.
+     * Handle an incoming registration request.
      */
     public function submit(): void
     {
