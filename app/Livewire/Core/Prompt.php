@@ -4,6 +4,7 @@ namespace App\Livewire\Core;
 
 use App\Actions\AiAction;
 use App\Models\Prompt as ModelsPrompt;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -22,7 +23,7 @@ class Prompt extends Component
         $this->response = null;
         $this->response = (new AiAction)->execute($this->prompt);
         ModelsPrompt::create([
-            'user_id' => auth()->id(),
+            'user_id' => Auth::id(),
             'prompt' => $this->prompt,
         ]);
         $this->prompt = '';
