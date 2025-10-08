@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->string('name');
+            $table->text('description')->nullable();
             $table->json('metadata')->nullable();
             $table->string('path')->unique();
             $table->boolean('public')->default(true);
