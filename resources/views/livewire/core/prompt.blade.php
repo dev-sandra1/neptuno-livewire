@@ -6,11 +6,21 @@
             wire:model="prompt"
             placeholder="Type your book description here..."
         />
-        <flux:select placeholder="Choose industry..." class="mt-5">
-            <flux:select.option>Photography</flux:select.option>
-            <flux:select.option>Design services</flux:select.option>
-            <flux:select.option>Web development</flux:select.option>
-        </flux:select>
+
+        <div class="mt-10">
+            <flux:error name="selected_genres" />
+            <flux:checkbox.group wire:model="selected_genres" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                @foreach ($book_genres as $genre)
+                    <flux:checkbox
+                        value="{{ $genre['id'] }}"
+                        label="{{ $genre['name'] }}"
+                        description="{{ $genre['description'] }}"
+                    />
+                @endforeach
+            </flux:checkbox.group>
+        </div>
+
+
         <flux:button variant="primary" class="mt-5" type="submit" icon="bolt">Create</flux:button>
     </form>
 
