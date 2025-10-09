@@ -2,7 +2,7 @@
 
 namespace App\Actions;
 
-final class PromptAction
+final class PromptContentAction
 {
     public function execute(string $prompt, array $selected_genres): string
     {

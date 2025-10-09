@@ -2,8 +2,10 @@
 
 namespace App\Livewire\Core;
 
-use App\Actions\AiAction;
-use App\Actions\PromptAction;
+use App\Actions\AiContentAction;
+use App\Actions\AiImageAction;
+use App\Actions\PromptContentAction;
+use App\Actions\PromptImageAction;
 use App\Models\Genre;
 use App\Models\Prompt as ModelsPrompt;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -43,24 +45,36 @@ class Prompt extends Component
             ->toArray();
 
         // generate the prompt
-        $current_prompt = (new PromptAction)->execute(
+        $current_prompt = (new PromptContentAction)->execute(
             prompt: $this->prompt,
             selected_genres: $genres_names,
         );
 
-        // call the AI service
+        // call the AI cintent service
         $this->response = null;
-        $this->response = (new AiAction)->execute($current_prompt);
+        $this->response = (new AiContentAction)->execute($current_prompt);
+
+        // call the AI image service
+        $prompt_image = (new PromptImageAction)->execute(
+            content: $this->response,
+            selected_genres: $genres_names,
+        );
+
+        $image = (new AiImageAction)->execute(prompt: $prompt_image);
+
+        $pdf = Pdf::loadView('pdf.book', [
+            'content' => $this->response,
+            'image' => $image
+        ]);
+
+        return response()->streamDownload(function () use ($pdf) {
+            echo $pdf->stream();
+        }, 'mi-libro.pdf');
 
         ModelsPrompt::create([
             'user_id' => Auth::id(),
             'prompt' => $this->prompt,
         ]);
         $this->prompt = '';
-
-        $pdf = Pdf::loadView('pdf.book', ['content' => $this->response]);
-        return response()->streamDownload(function () use ($pdf) {
-            echo $pdf->stream();
-        }, 'mi-libro.pdf');
     }
 }

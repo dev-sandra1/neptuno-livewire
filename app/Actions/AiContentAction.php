@@ -4,7 +4,7 @@ namespace App\Actions;
 
 use Illuminate\Support\Facades\Http;
 
-final class AiAction
+final class AiContentAction
 {
     public function execute(string $prompt): string
     {
