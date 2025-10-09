@@ -12,31 +12,18 @@
                 background: #fff;
             }
             .cover {
-                width: 100vw;
-                height: 100vh;
-                position: relative;
-                overflow: hidden;
-                margin: 0;
-                padding: 0;
+                width: 100%;
+                padding: 60px 0 40px 0;
+                text-align: center;
                 background: #fff;
             }
             .cover img {
-                width: 100vw;
-                height: 100vh;
-                object-fit: cover;
+                width: 100%;
+                height: auto;
+                max-height: 350px;
+                object-fit: contain;
                 display: block;
-            }
-            .cover .overlay {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                background: rgba(255,255,255,0.7);
+                margin: 0 auto 30px auto;
             }
             .cover h1 {
                 font-size: 2.8em;
@@ -92,11 +79,10 @@
 </head>
 <body>
     {{-- Portada --}}
-    <div class="cover">
-        @if(isset($image) && $image)
-            <img src="data:image/png;base64,{{ $image }}" alt="Portada" />
-        @endif
-        <div class="overlay">
+        <div class="cover">
+            @if(isset($image) && $image)
+                <img src="data:image/png;base64,{{ $image }}" alt="Portada" />
+            @endif
             @php
                 preg_match('/#(.*?)#/', $content, $titleMatch);
                 preg_match('/##(.*?)##/', $content, $subtitleMatch);
@@ -114,7 +100,6 @@
             @endif
             <p>Generado automáticamente por IA</p>
         </div>
-    </div>
 
     {{-- Contenido principal --}}
     <div class="content">
